@@ -28,10 +28,10 @@
                 Latest news
             </h1>
 
-            <div class="flex-wrap justify-center mt-4 space-x-8 inline-flex">
-                <span class="relative bg-gray-200 rounded-s inline-flex items-center">
-                    <label for="teams">Teams:</label>
-                    <select name="teams" id="teams" class="appearance-none bg-transparent py-2 px-5 text-sm font-semibold">
+            <div class="flex-wrap mt-4 lg:space-x-8 inline-flex">
+                <span class="relative bg-gray-200 rounded-s flex lg:inline-flex items-center">
+                    <label for="tag-1">Teams:</label>
+                    <select name="teams" id="tag-1" class="appearance-none bg-transparent py-2 px-5 text-sm font-semibold">
 
                         <?php //Replace values with database content ?>
 
@@ -67,23 +67,104 @@
                         <option value="Utah Jazz">Utah Jazz</option>
                         <option value="Washington Wizards">Washington Wizards</option>
                     </select>
-                    <img src="{{ Vite::asset('/public/storage/dropdown_arrow.png') }}" alt="Dropdown menu" width="19" height="19" style="position: absolute; right: 12px; pointer-events: none">
+                    <img src="{{ Vite::asset('/public/storage/dropdown_arrow.png') }}" alt="Dropdown menu" width="19" height="19" class="pointer-events-none absolute right-2">
                 </span>
 
-                <div class="flex-wrap justify-center space-x-8 inline-flex">
-                    <span class="relative bg-gray-200 rounded-s inline-flex items-center py-2 px-4">
+                <span class="relative bg-gray-200 rounded-s hover:bg-gray-400 flex lg:inline-flex py-2 px-4">
+                    <input class="btn-check tag-input" name="tags[]" type="checkbox" id="tag-2" value="Performance" autocomplete="off">
+                    <label class="btn btn-secondary" for="tag-2">Performance</label>
+                </span>
+
+                <span class="flex-wrap relative bg-gray-200 rounded-s flex lg:inline-flex py-2 px-4">
                         <form method="GET" action="#">
                             <label for="search"></label>
                             <input type="text" name="search" id="search" placeholder="Search" class="bg-transparent placeholder-black text-sm font-semibold">
                         </form>
-                    </span>
-                </div>
+                </span>
             </div>
         </div>
     </header>
 
-    <main></main>
+    <main class="max-w-7xl mt-7 px-7 mx-auto space-y-7">
+        <article class="bg-gray-200 hover:bg-gray-500 rounded-xl">
+            <div class="p-7 lg:flex">
+                <div class="flex-1 mr-3">
+                    <img src="https://cdn.nba.com/manage/2023/06/lebron-passes-kareem.jpg" alt="Blog post thumbnail">
+                </div>
 
-    <footer></footer>
+                <div class="flex-1 flex flex-col justify-between">
+                    <header>
+                        <div>
+                            <h1 class="text-2xl font-semibold">LeBron passes Kareem as all-time leading scorer</h1>
+                        </div>
+                    </header>
+
+                    <div class="text-sm">
+                        <p>Eleatess credere in fidelis quadrata!</p>
+                    </div>
+
+                    <div class="mb-2">
+                        <a href="#" class="px-4 py-1 border bg-black rounded-full text-white text-xs uppercase font-semibold">Read</a>
+                    </div>
+
+                    <footer class="mt-7">
+                        <div class="flex items-center text-sm">
+                            <img src="{{ Vite::asset('/public/storage/avatar_ein.png') }}" alt="Writer avatar" class="relative w-12 h-12 rounded-full overflow-hidden">
+                            <div class="ml-2">
+                                <h4>Nelio Jarmohamed</h4>
+                            </div>
+                        </div>
+
+                        <div class="mt-1">
+                            <a href="#" class="px-4 py-1 border bg-lakers-purple rounded-full text-lakers-gold text-xs uppercase font-semibold">Lakers</a>
+                            <a href="#" class="px-4 py-1 border border-red-600 rounded-full text-black text-xs uppercase font-semibold">Performance</a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </article>
+
+        <article class="bg-gray-200 hover:bg-gray-500 rounded-xl">
+            <div class="p-7 lg:flex">
+                <div class="flex-1 mr-3">
+                    <img src="https://cdn.nba.com/manage/2023/08/sengun-green-sidelines-1568x882.jpg" alt="Blog post thumbnail">
+                </div>
+
+                <div class="flex-1 flex flex-col justify-between">
+                    <header>
+                        <div>
+                            <h1 class="text-2xl font-semibold">Rockets look to take next step as rebuild continues</h1>
+                        </div>
+                    </header>
+
+                    <div class="text-sm">
+                        <p>Eleatess credere in fidelis quadrata!</p>
+                    </div>
+
+                    <div class="mb-2">
+                        <a href="#" class="px-4 py-1 border bg-black rounded-full text-white text-xs uppercase font-semibold">Read</a>
+                    </div>
+
+                    <footer class="mt-7">
+                        <div class="flex items-center text-sm">
+                            <img src="{{ Vite::asset('/public/storage/avatar_ein.png') }}" alt="Writer avatar" class="relative w-12 h-12 rounded-full overflow-hidden">
+                            <div class="ml-2">
+                                <h4>Nelio Jarmohamed</h4>
+                            </div>
+                        </div>
+
+                        <div class="mt-1">
+                            <a href="#" class="px-4 py-1 border bg-rockets-red rounded-full text-white text-xs uppercase font-semibold">Rockets</a>
+                            <a href="#" class="px-4 py-1 border bg-amber-50 rounded-full text-black text-xs uppercase font-semibold">General News</a>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="bg-gray-900 border border-black border-opacity-5 mt-7 px-7 py-4">
+        <h5 class="text-white">©Hoop Hub, LLC. All rights reserved.</h5>
+    </footer>
 </section>
 </html>
