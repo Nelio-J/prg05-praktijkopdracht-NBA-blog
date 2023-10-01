@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -13,11 +14,17 @@ class PostController extends Controller
      */
     public function index(): View
     {
-        foreach (Post::all() as $post) {
-            echo $post->name;
-        }
-        return view('posts');
+//        foreach (Post::all() as $post) {
+//            echo $post->name;
+//        }
+
+        return view('posts', [
+            'posts' => Post::with('category', 'user')->latest()->get(),
+            'categories' => Category::all()
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,9 +48,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
         //
+        return view('post', [
+            'post' => $post
+        ]);
     }
 
     /**

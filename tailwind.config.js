@@ -5,7 +5,8 @@ export default {
     "./resources/**/*.js",
     "./resources/**/*.vue",
   ],
-  theme: {
+    prefix: "tw-",
+    theme: {
     extend: {
         fontFamily: {
             'roboto': ['Roboto', 'sans-serif'],

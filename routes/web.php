@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,19 +19,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', [HomeController::class, 'index'])->name('/');
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show post');
+
+Route::get('/categories/{category:name}', function (Category $category) {
     return view('posts', [
-        'posts' => Post::all()
+        'posts' => $category->posts,
+        'currentCategory' => $category,
+        'categories' => Category::all()
+
     ]);
 });
 
-Route::get('posts/{post:slug}', function (Post $post) {
-    return view('post', [
-        'post' => $post
+Route::get('/authors/{user:username}', function (User $user) {
+    return view('posts', [
+        'posts' => $user->posts,
+        'categories' => Category::all()
     ]);
 });
 
 //Route::resource('posts', PostController::class);
+
+//Route::get('/posts', function () {
+//    return view('posts', [
+//        'posts' => Post::all()
+//    ]);
+//});
+
+//Route::get('posts/{post:slug}', function (Post $post) {
+//    return view('post', [
+//        'post' => $post
+//    ]);
+//});
 
 //Route::get('posts/{post}', function($id) {
 //    $path = __DIR__ . "/../resources/posts/$id.html";
@@ -43,3 +67,7 @@ Route::get('posts/{post:slug}', function (Post $post) {
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
