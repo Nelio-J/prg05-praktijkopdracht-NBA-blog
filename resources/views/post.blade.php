@@ -5,12 +5,12 @@
 @section('content')
     <article class="tw-max-w-7xl tw-mt-7 tw-mx-auto tw-space-y-7 lg:grid-cols-2">
         <div>
-            <a href="/posts" class="tw-relative tw-text-lg tw-ml-7 tw-px-7 tw-py-1 tw-border tw-bg-gray-700 tw-rounded-full tw-text-white hover:tw-bg-gray-600">< Back to home page</a>
+            <a href="{{ route('posts') }}" class="tw-relative tw-text-lg tw-ml-7 tw-px-7 tw-py-1 tw-border tw-bg-gray-700 tw-rounded-full tw-text-white hover:tw-bg-gray-600">< Back to home page</a>
         </div>
 
         <div class="tw-p-7 lg:tw-flex">
             <div class="tw-flex-1 tw-mr-3">
-                <img src="https://cdn.nba.com/manage/2023/06/lebron-passes-kareem.jpg" alt="Blog post thumbnail">
+                <img src="{{asset('storage/' . $post->image)}}" alt="Blog post thumbnail">
 
                 <p class="tw-mt-4 tw-block text-xs">
                     Published <time>{{$post['created_at']->diffForHumans()}}</time>
@@ -20,7 +20,7 @@
                      <img src="{{ Vite::asset('/public/storage/avatar_ein.png') }}" alt="Writer avatar"
                           class="tw-w-12 tw-h-12 tw-rounded-full tw-overflow-hidden">
                      <div>
-                         <a href="/authors/{{$post->user->username}}" class="tw-ml-2 tw-text-sm tw-font-semibold">{{$post->user->name}}</a>
+                         <a href="{{ route('posts') }}?author={{$post->user->username}}" class="tw-ml-2 tw-text-sm tw-font-semibold">{{$post->user->name}}</a>
                      </div>
                 </div>
 
@@ -36,8 +36,8 @@
                     </div>
                 </header>
 
-                <div class="tw-text-sm tw-space-y-6">
-                    <p>{{$post['content']}}</p>
+                <div class="tw-text-sm tw-space-y-4">
+                    {!! $post['content'] !!}
                 </div>
             </div>
         </div>

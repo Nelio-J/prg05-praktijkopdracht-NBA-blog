@@ -1,7 +1,7 @@
 <article class="tw-bg-gray-200 hover:tw-bg-gray-500 tw-rounded-xl tw-card">
     <div class="tw-p-7 lg:tw-flex">
         <div class="tw-flex-1 tw-mr-3">
-            <img src="https://cdn.nba.com/manage/2023/06/lebron-passes-kareem.jpg" alt="Blog post thumbnail">
+            <img src="{{asset('storage/' . $post->image)}}" alt="Blog post thumbnail">
         </div>
 
         <div class="tw-flex-1 tw-flex tw-flex-col tw-justify-between">
@@ -25,7 +25,7 @@
                     <img src="{{ Vite::asset('/public/storage/avatar_ein.png') }}" alt="Writer avatar"
                          class="tw-relative tw-w-12 tw-h-12 tw-rounded-full tw-overflow-hidden">
                     <div>
-                        <a href="/authors/{{$post->user->username}}" class="tw-ml-2 tw-text-sm">{{$post->user->name}}</a>
+                        <a href="{{ route('posts') }}?author={{$post->user->username}}" class="tw-ml-2 tw-text-sm">{{$post->user->name}}</a>
                     </div>
                 </div>
 

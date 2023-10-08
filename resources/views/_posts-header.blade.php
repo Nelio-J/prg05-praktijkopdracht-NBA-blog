@@ -14,9 +14,9 @@
                         <img src="{{ Vite::asset('/public/storage/dropdown_arrow.png') }}" alt="Dropdown menu" width="19" height="19" class="tw-pointer-events-none tw-absolute tw-right-2">
                     </button>
 
-                    <div x-show="open" class="tw-absolute tw-bg-gray-100 tw-py-2 tw-w-60 tw-mt-2" style="display: none">
+                    <div x-show="open" class="tw-absolute tw-bg-gray-100 tw-py-2 tw-w-60 tw-mt-2 tw-max-h-64 tw-overflow-auto" style="display: none">
                         @foreach($categories as $category)
-                            <a href="/categories/{{$category->name}}"
+                            <a href="{{ request()->fullUrlWithQuery(['category'=>$category->slug, 'page'=>null])}}"
                                class="tw-block tw-text-left tw-px-5 tw-py-2 text-xs tw-text-black tw-leading-5 hover:tw-bg-blue-700 focus:tw-bg-blue-700 hover:tw-text-white focus:tw-text-white
                                {{isset($currentCategory) && $currentCategory->is($category) ? 'tw-bg-blue-700 tw-text-white' : ''}}">
                                 {{$category->name}}</a>
@@ -42,12 +42,17 @@
                     <label class="btn btn-secondary" for="tag-2">Performance</label>
                 </span>
 
-            <span>
-                <form method="GET" action="#" class="tw-flex-wrap tw-flex tw-relative tw-bg-gray-200 tw-rounded-s lg:tw-inline-flex tw-py-2 tw-px-4">
+            <span class="tw-relative tw-bg-gray-200 tw-rounded-s lg:tw-inline-flex">
+                <form method="GET" action="{{ route('posts') }}" class="tw-flex-wrap tw-flex tw-absolute tw-bg-gray-200 tw-rounded-s lg:tw-inline-flex tw-py-2 tw-px-4 tw-items-center tw-mt-2">
+                   @if(request('category')) {{--search within a requested category--}}
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+
                     <label for="search"></label>
-                    <input type="text" name="search" id="search" placeholder="Search" class="tw-bg-transparent tw-placeholder-black tw-text-sm tw-font-semibold">
+                    <input type="text" name="search" id="search" placeholder="Search" value="{{ request('search') }}" class="tw-bg-transparent tw-placeholder-black tw-text-sm tw-font-semibold tw-relative tw-flex lg:tw-inline-flex tw-items-center">
                 </form>
             </span>
+
         </div>
     </div>
 </header>

@@ -15,12 +15,12 @@ class PostController extends Controller
     public function index(): View
     {
 //        foreach (Post::all() as $post) {
-//            echo $post->name;
-//        }
+ //        }
 
         return view('posts', [
-            'posts' => Post::with('category', 'user')->latest()->get(),
-            'categories' => Category::all()
+            'posts' => Post::with('category', 'user')->latest()->filter(request(['search', 'category', 'author']))->paginate(5)->withQueryString(),
+            'categories' => Category::all(),
+            'currentCategory' => Category::where('slug', request('category'))->first()
         ]);
     }
 
@@ -32,17 +32,52 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('createPost', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
         //
 //        $product = new Post();
 //        $product->title = 'My ';
 //        $product->excerpt = ;
+
+        $attributes = request()->validate([
+            'category_id' => 'required|exists:categories,id',
+            'slug' => 'required|unique:posts',
+            'title' => 'required',
+            'image' => 'required|image',
+            'excerpt' => 'required',
+            'content' => 'required',
+        ]);
+
+//        $attributes['user_id'] = auth()->id();
+
+//        Post::create($attributes);
+
+        $attributes['image'] = request()->file('image')->store('thumbnails');
+        auth()->user()->posts()->create($attributes);
+
+//        ddd(request()->all());
+
+//        $post = new Post();
+//        $post -> title = $request -> input('title');
+//        $post -> slug = \Str::slug($request -> input('title'));
+//        $post -> excerpt = $request -> input('excerpt');
+//        $post -> content = $request -> input('content');
+//        $post -> category = $request -> input('category');
+
+//        $post -> save();
+
+
+
+        return redirect('/posts');
+
     }
 
     /**

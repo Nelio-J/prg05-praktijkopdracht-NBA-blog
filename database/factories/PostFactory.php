@@ -26,7 +26,7 @@ class PostFactory extends Factory
             'title'  => $this->faker->sentence,
             'image' => 'blank',
             'excerpt' => $this->faker->sentence,
-            'content' => $this->faker->paragraph
+            'content' => '<p>' .implode('<p></p>', $this->faker->paragraphs(6)) . '</p>'
         ];
     }
 }

@@ -17,7 +17,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light tw-bg-gray-900 shadow-sm">
             <div class="tw-flex tw-justify-between tw-items-center tw-px-7 tw-py-4 container-fluid">
-                <a class="navbar-brand" href="{{ url('/posts') }}">
+                <a class="navbar-brand" href="{{ route('posts') }}">
                     <img src="{{ Vite::asset('/public/storage/PRG05_Hoop_Hub_Logo_V1_200px.png') }}" alt="Hoop Hub website logo" width="200">
                 </a>
 
@@ -33,6 +33,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+
+                        <span class="tw-relative tw-py-2 tw-px-4">
+                            <a href="{{ route('create post') }}" class="tw-relative tw-bg-blue-600 tw-py-2 tw-px-4 tw-rounded-2xl tw-text-white">Create new post</a>
+                        </span>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -70,7 +75,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

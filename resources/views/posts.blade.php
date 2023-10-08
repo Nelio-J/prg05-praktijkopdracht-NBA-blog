@@ -9,4 +9,5 @@
                 @include('layouts.post-card')
             @endforeach
         </main>
+        {{$posts->links()}}
 @endsection
