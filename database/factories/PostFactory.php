@@ -24,9 +24,10 @@ class PostFactory extends Factory
             'category_id' => $this->faker->randomDigit(['1, 30']),
             'slug' => $this->faker->slug,
             'title'  => $this->faker->sentence,
-            'image' => 'blank',
+            'image' => 'thumbnails/default-hoop-hub-thumbnail.png',
             'excerpt' => $this->faker->sentence,
-            'content' => '<p>' .implode('<p></p>', $this->faker->paragraphs(6)) . '</p>'
+            'content' => '<p>' .implode('<p></p>', $this->faker->paragraphs(6)) . '</p>',
+            'status' => 'Published'
         ];
     }
 }

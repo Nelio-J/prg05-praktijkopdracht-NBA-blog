@@ -10,21 +10,21 @@
 
         <div class="tw-p-7 lg:tw-flex">
             <div class="tw-flex-1 tw-mr-3">
-                <img src="{{asset('storage/' . $post->image)}}" alt="Blog post thumbnail">
+                <img src="{{Vite::asset('/public/storage/' . $post->image)}}" alt="Blog post thumbnail">
 
                 <p class="tw-mt-4 tw-block text-xs">
                     Published <time>{{$post['created_at']->diffForHumans()}}</time>
                 </p>
 
                 <div class="tw-mt-2 tw-flex tw-items-center">
-                     <img src="{{ Vite::asset('/public/storage/avatar_ein.png') }}" alt="Writer avatar"
+                     <img src="{{ Vite::asset($post->user->image) }}" alt="Writer avatar"
                           class="tw-w-12 tw-h-12 tw-rounded-full tw-overflow-hidden">
                      <div>
                          <a href="{{ route('posts') }}?author={{$post->user->username}}" class="tw-ml-2 tw-text-sm tw-font-semibold">{{$post->user->name}}</a>
                      </div>
                 </div>
 
-                <div class="tw-mt-1">
+                <div class="tw-mt-2">
                     @include('layouts.category-visual-design')
                 </div>
             </div>
@@ -36,7 +36,7 @@
                     </div>
                 </header>
 
-                <div class="tw-text-sm tw-space-y-4">
+                <div class="tw-text-sm tw-space-y-4 tw-whitespace-pre-line">
                     {!! $post['content'] !!}
                 </div>
             </div>

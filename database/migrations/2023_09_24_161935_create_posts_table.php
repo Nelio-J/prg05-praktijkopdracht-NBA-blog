@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->string('slug')->unique();
             $table->string('title');
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('thumbnails/default-hoop-hub-thumbnail.png');
             $table->string('excerpt');
             $table->text('content');
             $table->timestamps();

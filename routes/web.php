@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Models\Category;
@@ -27,6 +27,14 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show'])->name('show po
 Route::get('/create', [PostController::class, 'create'])->middleware('auth')->name('create post');
 Route::post('/posts', [PostController::class, 'store'])->middleware('auth')->name('store post');
 
+Route::get('/account/posts', [AccountController::class, 'index'])->middleware('auth')->name('account posts');
+Route::get('/posts/{post:slug}/edit', [PostController::class, 'edit'])->middleware('auth')->name('edit post');
+Route::patch('/account/posts/{post:slug}', [PostController::class, 'update'])->middleware('auth')->name('update post');
+Route::delete('/account/posts/{post:slug}', [PostController::class, 'destroy'])->middleware('auth')->name('delete post');
+
+Route::get('/admin/posts', [AdminController::class, 'index'])->middleware('auth', 'can:admin')->name('admin posts');
+
+Route::patch('/admin/posts', [AdminController::class, 'changePostStatus'])->middleware('auth')->name('change status');
 
 //Route::resource('posts', PostController::class)->middleware('auth')->except('index', 'show');
 

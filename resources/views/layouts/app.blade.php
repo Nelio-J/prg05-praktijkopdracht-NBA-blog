@@ -35,7 +35,7 @@
                     <ul class="navbar-nav ms-auto">
 
                         <span class="tw-relative tw-py-2 tw-px-4">
-                            <a href="{{ route('create post') }}" class="tw-relative tw-bg-blue-600 tw-py-2 tw-px-4 tw-rounded-2xl tw-text-white">Create new post</a>
+                            <a href="{{ route('create post') }}" class="tw-relative tw-bg-blue-600 tw-py-2 tw-px-4 tw-rounded-2xl tw-text-white hover:tw-bg-blue-500">Create new post</a>
                         </span>
 
                         <!-- Authentication Links -->
@@ -58,6 +58,16 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @can('admin')
+                                        <a class="dropdown-item" href="{{ route('admin posts') }}">
+                                            Account
+                                        </a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('account posts') }}">
+                                            Account
+                                        </a>
+                                    @endcan
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

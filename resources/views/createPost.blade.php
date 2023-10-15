@@ -3,7 +3,7 @@
 @section('pageTitle', 'Create a new post')
 
 @section('content')
-    <main class="tw-max-w-4xl tw-mt-7 tw-px-7 tw-mx-auto tw-space-y-7">
+    <main class="tw-max-w-4xl tw-mt-7 tw-px-7 tw-py-7 tw-mx-auto tw-space-y-7 tw-border tw-bg-slate-300 tw-rounded">
         <h1 class="tw-text-lg tw-font-bold tw-mb-4">
             Publish a new blog post
         </h1>
@@ -17,38 +17,38 @@
                     Title
                 </label>
 
-                <input class="form-control"
-                       type="text"
+                <input type="text"
                        name="title"
+                       class="form-control @error('title') is-invalid @enderror border-black"
                        id="title"
                        value="{{ old('title') }}"
                        required
                 >
 
                 @error('title')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="tw-mb-6">
-                <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"
-                       for="slug"
-                >
-                    Slug
-                </label>
+{{--            <div class="tw-mb-6">--}}
+{{--                <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"--}}
+{{--                       for="slug"--}}
+{{--                >--}}
+{{--                    Slug--}}
+{{--                </label>--}}
 
-                <input class="form-control"
-                       type="text"
-                       name="slug"
-                       id="slug"
-                       value="{{ old('slug') }}"
-                       required
-                >
+{{--                <input type="text"--}}
+{{--                       name="slug"--}}
+{{--                       class="form-control @error('slug') is-invalid @enderror"--}}
+{{--                       id="slug"--}}
+{{--                       value="{{ old('slug') }}"--}}
+{{--                       required--}}
+{{--                >--}}
 
-                @error('slug')
-                <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+{{--                @error('slug')--}}
+{{--                <div class="invalid-feedback">{{ $message }}</div>--}}
+{{--                @enderror--}}
+{{--            </div>--}}
 
             <div class="tw-mb-6">
                 <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"
@@ -57,16 +57,16 @@
                     Thumbnail
                 </label>
 
-                <input class="form-control"
-                       type="file"
+                <input type="file"
                        name="image"
+                       class="form-control @error('image') is-invalid @enderror border-black"
                        id="image"
                        value="{{ old('image') }}"
                        required
                 >
 
                 @error('image')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -77,14 +77,15 @@
                     Excerpt
                 </label>
 
-                <textarea class="form-control"
-                          name="excerpt"
+                <textarea name="excerpt"
+                          class="form-control @error('excerpt') is-invalid @enderror border-black"
                           id="excerpt"
+                          maxlength="255"
                           required
                 >{{ old('excerpt') }}</textarea>
 
                 @error('excerpt')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -95,14 +96,14 @@
                     Content
                 </label>
 
-                <textarea class="form-control"
-                          name="content"
+                <textarea name="content"
+                          class="form-control @error('content') is-invalid @enderror border-black"
                           id="content"
                           required
                 >{{ old('content') }}</textarea>
 
                 @error('content')
-                <div class="invalid-feedback">{{ $message }}</div>
+                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
             </div>
 
@@ -113,7 +114,7 @@
                     Category
                 </label>
 
-                <select name="category_id" id="category_id" class="tw-bg-transparent tw-py-2 tw-text-sm tw-font-semibold">
+                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror border-black">
                     <option value="category_id" disabled selected hidden>Select</option>
 
                     @foreach($categories as $category)
@@ -123,12 +124,12 @@
                     @endforeach
                 </select>
 
-                @error('category')
-                <div class="invalid-feedback">{{ $message }}</div>
+                @error('category_id')
+                <div class="invalid-feedback" role="alert">{{ $message }}</div>
                 @enderror
             </div>
 
-            <button type="submit" class="tw-relative tw-bg-blue-600 tw-py-2 tw-px-4 tw-rounded-2xl tw-text-white">
+            <button type="submit" class="tw-relative tw-bg-blue-600 tw-py-2 tw-px-4 tw-rounded-2xl tw-text-white hover:tw-bg-blue-500">
                 Publish Post
             </button>
 

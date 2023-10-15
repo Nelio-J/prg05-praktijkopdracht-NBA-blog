@@ -5,24 +5,55 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableObserver;
 
 class Post extends Model
 {
     use HasFactory;
+    use Sluggable;
+
 
 //    public function category(){
 //        return $this->belongsTo('');
 //    }
 
-    protected $fillable = ['category_id', 'slug', 'title', 'image', 'excerpt', 'content'];
+    protected $fillable = ['category_id', 'slug', 'title', 'image', 'excerpt', 'content', 'status'];
 
     protected $with = ['category', 'user'];
 
-    public function scopeFilter(Builder $query, array $filter): void //A local scope for the filter: Post::newQuery()->filter()
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
     {
-        $query->when($filter['search'] ?? false, fn($query, $search) => //if the filter array contains search
-            $query->where(fn($query) =>
-                $query->where('title', 'like', '%' . $search . '%')
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    public function sluggableEvent(): string
+    {
+        /**
+         * Default behaviour -- generate slug before model is saved.
+         */
+//        return SluggableObserver::SAVING;
+
+        /**
+         * Optional behaviour -- generate slug after model is saved.
+         * This will likely become the new default in the next major release.
+         */
+        return SluggableObserver::SAVED;
+    }
+    public function scopeFilter(Builder $query, array $filter): void //A local scope that accepts an array of filters: Post::newQuery()->filter()
+    {
+        $query->when($filter['search'] ?? false, fn($query, $search) => //?? = null coalescing operator. If the filter array contains search, pass $query & $search. If it doesn't, it gives false
+            $query->where(fn($query) => //logical grouping that correctly closes the brackets in query
+                $query->where('title', 'like', '%' . $search . '%') //where('title', 'like', '%' . request('search') . '%')
                     ->orWhere('excerpt', 'like', '%' . $search . '%')
                     ->orWhere('content', 'like', '%' . $search . '%')
             )
