@@ -25,16 +25,29 @@
                     </td>
                     <td>{{$post->user->name}}</td>
                     <td>
-                        <form method="POST"
-                              action="{{ route('change status') }}"
-                        >
+                        <form method="POST" action="{{ route('change status')}}">
                             @csrf
                             @method('PATCH')
 
-                            <button class="tw-px-2 tw-inline-flex tw-mt-3 tw-font-semibold tw-rounded-full tw-bg-green-100 tw-text-green-800"
-                            >
-                                {{$post['status']}}
-                            </button>
+                            <div>
+                                <label for="status">
+                                </label>
+                                <input type="hidden"
+                                       name="id"
+                                       value="{{ $post->id }}">
+                            </div>
+                            <div>
+                                <label for="status">
+                                </label>
+                                <button type="submit"
+                                        id="status"
+                                        name="status"
+                                        value="{{$post['status']}}"
+                                        class="tw-px-2 tw-inline-flex tw-mt-3 tw-font-semibold tw-rounded-full tw-bg-green-100 tw-text-green-800"
+                                >
+                                    {{$post['status']}}
+                                </button>
+                            </div>
                         </form>
                     </td>
                     <td class="tw-w-24">
@@ -42,7 +55,7 @@
                     </td>
                     <td>
                         <form method="POST"
-                            action="/admin/posts/{{$post['slug']}}"
+                            action="/account/posts/{{$post['slug']}}"
                             class="tw-mb-0 tw-text-red-600"
                             x-data="{conf: false, check: false}"
                             @submit.prevent="if(conf == false) return;$el.submit()"

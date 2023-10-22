@@ -58,15 +58,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @can('admin')
-                                        <a class="dropdown-item" href="{{ route('admin posts') }}">
-                                            Account
-                                        </a>
-                                    @else
-                                        <a class="dropdown-item" href="{{ route('account posts') }}">
-                                            Account
-                                        </a>
-                                    @endcan
+                                    <a class="dropdown-item" href="{{ route('account posts') }}">
+                                        Dashboard
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('account', ['username' => Auth::user()->username]) }}">
+                                        Account
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

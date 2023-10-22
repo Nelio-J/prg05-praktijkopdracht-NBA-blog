@@ -15,7 +15,7 @@
                             <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
 
                             <div class="col-md-6">
-                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus maxlength="21">
 
                                 @error('username')
                                 <span class="invalid-feedback" role="alert">
@@ -73,6 +73,16 @@
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <ul class="text-md-start tw-ml-24"> A password must:
+                                <li>-be at least 8 characters long</li>
+                                <li>-contain at least 1 uppercase letter</li>
+                                <li>-contain at least 1 lowercase letter</li>
+                                <li>-contain at least 1 number</li>
+                                <li>-contain at least 1 symbol</li>
+                            </ul>
                         </div>
 
                         <div class="row mb-0">

@@ -22,7 +22,7 @@
 
             <footer class="tw-mt-7">
                 <div class="tw-flex tw-items-center tw-text-sm">
-                    <img src="{{ Vite::asset($post->user->image) }}" alt="Writer avatar"
+                    <img src="{{ Vite::asset('/public/storage/' . $post->user->image) }}" alt="Writer avatar"
                          class="tw-relative tw-w-12 tw-h-12 tw-rounded-full tw-overflow-hidden">
                     <div>
                         <a href="{{ route('posts') }}?author={{$post->user->username}}" class="tw-ml-2 tw-text-sm">{{$post->user->name}}</a>

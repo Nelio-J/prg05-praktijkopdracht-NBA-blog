@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
-//use App\Models\User;
+use App\Models\User;
 
-//use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -26,6 +27,7 @@ class PostController extends Controller
         return view('posts', [
             'posts' => Post::with('category', 'user')->where('status', '=', 'Published')->latest()->filter(request(['search', 'category', 'author']))->paginate(5)->withQueryString(),
             'categories' => Category::all(),
+            'comment' => Comment::all(),
             'currentCategory' => Category::where('slug', request('category'))->first()
         ]);
     }
@@ -35,9 +37,17 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(User $user)
     {
         //
+
+        if (! Gate::allows('create', $user)) {
+            abort(403);
+            //show a message that says 'You must post at least 3 comments to create a post'
+        }
+
+        // The current user can create blog posts...
+
         return view('createPost', [
             'categories' => Category::all()
         ]);
@@ -125,7 +135,7 @@ class PostController extends Controller
          * @throws \Illuminate\Auth\Access\AuthorizationException
          */
 
-        $this->authorize('update', Post::class);
+//        $this->authorize('update', [Post::class, User::class]);
 
 
         //server-side validation
@@ -139,6 +149,12 @@ class PostController extends Controller
 
 
         if (isset($request['image'])) {
+            $filePathName = public_path('storage/'.$post->image);
+            if( file_exists($filePathName) ){
+                if ($filePathName !== 'thumbnails/default-hoop-hub-thumbnail.png') {
+                    unlink($filePathName);
+                }
+            }
             $request['image'] = request()->file('image')->store('thumbnails');
             $post -> image = $request -> input('image');
         }
@@ -167,10 +183,13 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
 
-        $filePathName = '/public/storage/'.$post->image;
+        $filePathName = public_path('storage/'.$post->image);
         if( file_exists($filePathName) ){
-            unlink($filePathName);
+            if ($filePathName !== 'thumbnails/default-hoop-hub-thumbnail.png') {
+                unlink($filePathName);
+            }
         }
+
 
         $post -> delete();
 
