@@ -30,26 +30,6 @@
                 @enderror
             </div>
 
-{{--            <div class="tw-mb-6">--}}
-{{--                <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"--}}
-{{--                       for="slug"--}}
-{{--                >--}}
-{{--                    Slug--}}
-{{--                </label>--}}
-
-{{--                <input type="text"--}}
-{{--                       name="slug"--}}
-{{--                       class="form-control @error('slug') is-invalid @enderror"--}}
-{{--                       id="slug"--}}
-{{--                       value="{{ old('slug') }}"--}}
-{{--                       required--}}
-{{--                >--}}
-
-{{--                @error('slug')--}}
-{{--                <div class="invalid-feedback">{{ $message }}</div>--}}
-{{--                @enderror--}}
-{{--            </div>--}}
-
             <div class="tw-mb-6">
                 <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"
                        for="image"

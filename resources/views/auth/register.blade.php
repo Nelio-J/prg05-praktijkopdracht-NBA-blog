@@ -76,7 +76,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <ul class="text-md-start tw-ml-24"> A password must:
+                            <ul class="text-md-start tw-ml-24 fw-semibold"> A password must:
                                 <li>-be at least 8 characters long</li>
                                 <li>-contain at least 1 uppercase letter</li>
                                 <li>-contain at least 1 lowercase letter</li>

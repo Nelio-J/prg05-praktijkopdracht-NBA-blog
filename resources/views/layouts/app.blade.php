@@ -17,9 +17,11 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light tw-bg-gray-900 shadow-sm">
             <div class="tw-flex tw-justify-between tw-items-center tw-px-7 tw-py-4 container-fluid">
-                <a class="navbar-brand" href="{{ route('posts') }}">
+                <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ Vite::asset('/public/storage/PRG05_Hoop_Hub_Logo_V1_200px.png') }}" alt="Hoop Hub website logo" width="200">
                 </a>
+
+
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -28,8 +30,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ route('posts') }}">{{ __('Posts') }}</a>
+                        </li>
                     </ul>
+
+                    @if (session('success'))
+                        <div class="alert alert-success border border-black bg-info-subtle" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

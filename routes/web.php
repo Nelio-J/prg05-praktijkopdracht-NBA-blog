@@ -41,57 +41,9 @@ Route::get('/account/{username}', [AccountController::class, 'account'])->middle
 Route::get('/account/{username}/edit', [AccountController::class, 'accountSettings'])->middleware('auth')->name('account settings');
 Route::patch('/account/username}', [AccountController::class, 'update'])->middleware('auth')->name('edit account');
 
-//Route::get('/admin/posts', [AdminController::class, 'index'])->middleware('auth', 'can:admin')->name('admin posts');
-
 Route::patch('/account/posts', [AccountController::class, 'changePostStatus'])->middleware('auth')->name('change status');
 
 //Route::resource('posts', PostController::class)->middleware('auth')->except('index', 'show');
-
-//Route::get('/category/{category:slug}', [PostController::class, 'index'])->name('categories');
-//Route::get('/authors/{user:username}', [AuthorController::class, 'index'])->name('authors');
-
-//Route::get('/categories/{category:name}', function (Category $category) {
-//    return view('posts', [
-//        'posts' => $category->posts,
-//        'currentCategory' => $category,
-//        'categories' => Category::all()
-//
-//    ]);
-//});
-
-//Route::get('/authors/{user:username}', function (User $user) {
-//    return view('posts', [
-//        'posts' => $user->posts,
-//        'categories' => Category::all()
-//    ]);
-//});
-
-//Route::get('/posts', function () {
-//    return view('posts', [
-//        'posts' => Post::all()
-//    ]);
-//});
-
-//Route::get('posts/{post:slug}', function (Post $post) {
-//    return view('post', [
-//        'post' => $post
-//    ]);
-//});
-
-//Route::get('posts/{post}', function($id) {
-//    $path = __DIR__ . "/../resources/posts/$id.html";
-//
-//    $post = file_get_contents($path);
-//
-//    return view ('post', [
-//        'post' => $post
-//    ]);
-//});
-
-
-
-
-
 
 Auth::routes();
 

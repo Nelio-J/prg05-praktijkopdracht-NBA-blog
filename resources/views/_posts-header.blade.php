@@ -25,7 +25,6 @@
                 </div>
             </span>
 
-
 {{--                    <label for="tag-1">Teams:</label>--}}
 {{--                    <select name="teams" id="tag-1" class="tw-appearance-none tw-bg-transparent tw-py-2 tw-px-5 tw-text-sm tw-font-semibold">--}}
 
@@ -37,12 +36,8 @@
 {{--                    </select>--}}
 {{--                    <img src="{{ Vite::asset('/public/storage/dropdown_arrow.png') }}" alt="Dropdown menu" width="19" height="19" class="tw-pointer-events-none tw-absolute tw-right-2">--}}
 
-            <span class="tw-relative tw-bg-gray-200 tw-rounded-s hover:tw-bg-gray-400 tw-flex lg:tw-inline-flex tw-py-2 tw-px-4">
-                    <input class="btn-check tag-input" name="tags[]" type="checkbox" id="tag-2" value="Performance" autocomplete="off">
-                    <label class="btn btn-secondary" for="tag-2">Performance</label>
-                </span>
 
-            <span class="tw-relative tw-bg-gray-200 tw-rounded-s lg:tw-inline-flex">
+            <span class="tw-relative tw-bg-gray-200 tw-rounded-s lg:tw-inline-flex tw-items-center tw-mt-2">
                 <form method="GET" action="{{ route('posts') }}" class="tw-flex-wrap tw-flex tw-absolute tw-bg-gray-200 tw-rounded-s lg:tw-inline-flex tw-py-2 tw-px-4 tw-items-center tw-mt-2">
                    @if(request('category')) {{--search within a requested category--}}
                         <input type="hidden" name="category" value="{{ request('category') }}">

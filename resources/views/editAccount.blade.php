@@ -71,39 +71,6 @@
                     @enderror
                 </div>
 
-{{--                <div class="tw-mb-6">--}}
-{{--                    <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"--}}
-{{--                           for="password"--}}
-{{--                    >--}}
-{{--                        Password--}}
-{{--                    </label>--}}
-
-{{--                    <input type="password"--}}
-{{--                           name="password"--}}
-{{--                           class="form-control @error('password') is-invalid @enderror border-black"--}}
-{{--                           id="password"--}}
-{{--                    >--}}
-
-{{--                    @error('password')--}}
-{{--                    <div class="invalid-feedback" role="alert">{{ $message }}</div>--}}
-{{--                    @enderror--}}
-{{--                </div>--}}
-
-{{--                <div class="tw-mb-6">--}}
-{{--                <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"--}}
-{{--                       for="password-confirm"--}}
-{{--                >--}}
-{{--                    Confirm password--}}
-{{--                </label>--}}
-
-{{--                <input type="password"--}}
-{{--                       name="password_confirmation"--}}
-{{--                       class="form-control @error('password') is-invalid @enderror border-black"--}}
-{{--                       id="password-confirm"--}}
-{{--                       autocomplete="new-password"--}}
-{{--                >--}}
-{{--                </div>--}}
-
                 <div class="tw-mb-6">
                     <label class="tw-block tw-mb-2 tw-uppercase tw-font-bold tw-text-xs tw-text-gray-700"
                            for="image"

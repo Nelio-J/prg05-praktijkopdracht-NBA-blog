@@ -74,11 +74,11 @@
                 </tr>
             @endforeach
 
-            @if (session('success'))
-                <div class="alert alert-success border border-black bg-info-subtle" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
+{{--            @if (session('success'))--}}
+{{--                <div class="alert alert-success border border-black bg-info-subtle" role="alert">--}}
+{{--                    {{ session('success') }}--}}
+{{--                </div>--}}
+{{--            @endif--}}
 
             </tbody>
         </table>
