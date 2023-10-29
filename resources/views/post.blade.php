@@ -38,7 +38,7 @@
                 </header>
 
                 <div class="tw-text-sm tw-space-y-4 tw-whitespace-pre-line">
-                    {!! $post['content'] !!}
+                    {{ $post['content'] }}
                 </div>
             </div>
         </div>

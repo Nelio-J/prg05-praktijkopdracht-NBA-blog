@@ -17,7 +17,7 @@
 
 
     <div class="tw-px-4 tw-text-sm tw-space-y-4 tw-whitespace-pre-line">
-        {!! $comment['content'] !!}
+        {{ $comment['content'] }}
     </div>
 
 </article>

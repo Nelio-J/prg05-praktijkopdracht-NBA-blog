@@ -62,10 +62,10 @@ class PostController extends Controller
         //server-side validation
         $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'title' => 'required',
+            'title' => 'required|string',
             'image' => 'required|image',
-            'excerpt' => 'required',
-            'content' =>  'required',
+            'excerpt' => 'required|string',
+            'content' =>  'required|string',
         ]);
 
 
@@ -130,10 +130,10 @@ class PostController extends Controller
         //server-side validation
         $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'title' => 'required',
+            'title' => 'required|string',
             'image' => 'image',
-            'excerpt' => 'required',
-            'content' => 'required',
+            'excerpt' => 'required|string',
+            'content' => 'required|string',
         ]);
 
 
